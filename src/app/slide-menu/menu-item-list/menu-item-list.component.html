@@ -1,0 +1,24 @@
+<div layout-root>
+	<mat-action-list [@slide]="animState" (@slide.done)="resetState()">
+		<div *ngIf="showBack">
+			<button mat-list-item (click)="goBack()">
+        <div mat-line fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-icon>chevron_left</mat-icon>
+            <div>Back</div>
+          </div>
+        </div>
+      </button>
+			<mat-divider></mat-divider>
+		</div>
+		<button mat-list-item *ngFor="let item of menuItems" (click)="selectItem(item)">
+      <div mat-line fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <mat-icon>{{item.icon}}</mat-icon>
+          <div>{{item.label}}</div>
+        </div>
+        <mat-icon *ngIf="item.items">chevron_right</mat-icon>
+      </div>
+    </button>
+	</mat-action-list>
+</div>

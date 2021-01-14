@@ -1,0 +1,20 @@
+<div *ngIf="showBreadcrumb">
+	<div bread-crumb fxLayout="column" fxLayoutAlign="space-between start">
+		<div fxLayout="row" fxLayoutAlign="space-between center">
+			<ng-container *ngFor="let crumb of breadCrumb; let i = index">
+				<div menu-item>{{ crumb.label }}</div>
+				<mat-icon *ngIf="crumb !== breadCrumb[breadCrumb.length -1]">chevron_right</mat-icon>
+			</ng-container>
+			<ng-container *ngIf="activeItem && showActiveItem">
+				<mat-icon>chevron_right</mat-icon>
+				<div active-item>{{ activeItem.label }}</div>
+			</ng-container>
+		</div>
+	</div>
+	<mat-divider></mat-divider>
+</div>
+
+
+<app-menu-item-list [menuItems]="currentItems" [showBack]="selectedIndex > 0" (itemSelected)="selectMenuItem($event)"
+	(backSelected)="goBack()">
+</app-menu-item-list>
